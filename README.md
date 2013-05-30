@@ -17,10 +17,10 @@ An innovative six-class classification model and web application that is able to
 3. Web Application: Build a web application that can classify and summarize emotions on Twitter in real-time based on user-specified keyword.
 
 ## _Snapshots_
-This the the first page for users to enter keyword.
+1. This the the first page for users to enter keyword:
 ![first](snapshots/first.jpeg)
 
-This is the second page displaying crawled tweets as well as their predicted emotions.
+2. This is the second page displaying crawled tweets as well as their predicted emotions:
 ![second](snapshots/second.png)
 
     
