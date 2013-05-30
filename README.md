@@ -12,7 +12,12 @@ An innovative six-class classification model and web application that is able to
     Teamwork: Yayang Tian, Tao Feng, Chun Chen
 
 ## _Contribution_
-1. 
-    
+1. Tweets Corpus: Presented a method for automatically collecting recent tweets with different emo- tions. Created a large tweets corpus consisting of five emotions: ”happy, sad, angry, afraid, ashamed”.
+2. Six-class Classification Model: Adopted various methods for tweets affect classification and out- perform baseline approach by 21.197%. Conducted experimental evaluations on real-time Tweets and showed the importance for stemming, affect dictionary, smiley, information gain, and SVM in five-class classification.
+3. Web Application: Build a web application that can classify and summarize emotions on Twitter in real-time based on user-specified keyword.
+
+## _Snapshots_
+![first](snapshots/first.jpeg)
+![second](snapshots/second.png)
 
     
