@@ -1,4 +1,4 @@
-twitter-social-web-mining
+Twitter Social Web Mining
 =========================
 
 An innovative six-class classification model and web application that is able to predict sentiments of tweets around you.
