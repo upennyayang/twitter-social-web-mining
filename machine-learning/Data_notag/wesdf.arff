@@ -1,0 +1,39 @@
+@relation 
+
+@attribute first_person numeric
+@attribute second_person numeric
+@attribute third_person numeric
+@attribute conjunct numeric
+@attribute past_tense_verb numeric
+@attribute furture_tense_verb numeric
+@attribute commas numeric
+@attribute colons_semicolons numeric
+@attribute dashes numeric
+@attribute parentheses numeric
+@attribute ellipses numeric
+@attribute common_nouns numeric
+@attribute proper_nouns numeric
+@attribute adverbs numeric
+@attribute wh_words numeric
+@attribute slang numeric
+@attribute uppercase numeric
+@attribute avg_sentence_len numeric
+@attribute avg_token_len numeric
+@attribute count_sentences numeric
+@attribute class {../wesdf.twt} 
+
+@data
+106,1,107,0,0,0,0,0,0,0,0,4,0,0,0,105,17,5,0,2,../wesdf.twt
+91,0,91,0,0,0,0,1,0,0,0,9,0,0,0,91,17,10,0,1,../wesdf.twt
+128,0,125,0,0,0,0,0,0,0,0,7,0,1,0,128,22,11,0,1,../wesdf.twt
+104,0,105,0,0,0,0,0,0,0,0,4,0,1,0,105,21,11,0,1,../wesdf.twt
+127,0,123,1,2,0,0,0,0,0,0,2,0,2,0,125,26,5,0,3,../wesdf.twt
+190,0,196,0,0,0,1,0,0,0,0,7,0,1,3,196,43,11,0,2,../wesdf.twt
+231,0,231,2,0,0,0,0,0,0,2,9,0,0,0,233,46,6,0,4,../wesdf.twt
+172,0,172,0,0,0,0,0,0,0,0,12,0,0,0,173,32,16,0,1,../wesdf.twt
+202,0,198,0,1,0,0,1,0,0,0,9,0,0,1,202,43,11,0,2,../wesdf.twt
+119,0,121,0,0,0,0,0,0,0,0,4,0,0,0,121,24,12,0,1,../wesdf.twt
+231,1,233,0,0,0,0,2,0,0,2,12,0,2,0,235,44,8,0,3,../wesdf.twt
+85,0,86,0,0,0,0,1,0,0,1,5,0,0,0,86,17,5,0,2,../wesdf.twt
+188,0,193,0,0,0,0,0,0,0,1,9,0,1,0,192,35,6,0,3,../wesdf.twt
+108,0,112,0,0,1,0,1,0,0,0,5,0,0,1,112,21,4,0,3,../wesdf.twt

@@ -1,0 +1,13 @@
+
+(1)Twitter sentiment analysis using Python and NLTK
+http://www.laurentluce.com/posts/twitter-sentiment-analysis-using-python-and-nltk/
+
+
+(2) Twitter Apps
+http://www.tweetfeel.com/
+http://twittersentiment.appspot.com/
+http://twitrratr.com
+http://maps.esri.com/SP_DEMOS/twitter/twittermood/index.html
+
+(3) CIS530 Python Reference
+http://nltk.org/book/ch01.html

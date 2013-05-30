@@ -1,0 +1,97 @@
+baseline : 46.4602% // Unigram without any preprocessing SVC
+
+WIth Symbol: 46.397%  // Take Unicode symbol(like smile symbol etc) into account SVC
+
+with emoticon : accuracy = 46.7446% // Take emoticons into account(like :) etc), SVC
+
+with stemmer: 49.0624%  //Use LancasterStemmer , SVC
+
+word only: 43.0784%  // Ignore everything except word, things like ..., ! will be ignored,SVC
+
+with stemmer and emoticons : 49.3257%   49.3679%(with stoplist)  : With both stemmer and emoticons
+
+//The rest is feature ranking by  information gain Unigram.
+
+IG_top_500: 38.4008%
+
+IG_top_1000:  43.7% 
+
+IG_top_1500: 45.7754% 
+
+IG_top_2000: 46.7657% 
+
+IG_top_2500: 47.3135% 
+
+IG_top_3000: 47.461% 
+
+		3500: 47.8614%
+		4000: 47.8087% 
+		4500: 48.1353%
+		5000: 48.2828% 
+		5500: 48.3565%
+		6000: 48.2933%
+		6500: 48.367% 
+		7000: 48.4619% 
+		7500: 48.4408%
+		8000: 48.4408%
+		8500: 48.504% 
+		9000: 48.504% 
+		9500: 48.4935%
+		10000: 48.4724% 	
+
+
+
+//The rest is ranking by information gain bigram
+Bi_IG_top_2000:  37.9372%
+		  4000:  41.1504% 
+		  6000:  42.9625%  
+		  8000:  43.1311% 
+		  10000: 43.9633%
+		  14000: 44.9431% 
+		  16000: 45.2065%
+		  18000: 45.67%
+		  20000: 45.7438%
+		  22000: 45.7859% 
+		  24000: 45.7227%
+		  26000: 45.649% 
+		
+
+//Mix Unigram and Bigram		
+mix(IG_top_4500 and Bi_IG_top_8000):  49.4732% 
+
+mix(IG_top_4500 and Bi_IG_top_8000):  49.4732% 
+
+		   8000 and 16000:	49.9157%  with word_net:Accuracy = 50.1475% (4760/9492)
+
+
+// Binary classify
+Happy Not Happy: 85.3666% 
+Angry : 83.2807% 
+Sad:  75.8639% 
+Ashamed: 82.1745% 
+Afraid: 84.5133%
+
+Total: 9492
+Correct: 4509.0
+Accuracy  47.5031605563%
+
+//Features from birdy(Ask chun chen about this)
+With birdy :32.2061% 
+
+
+// Four dictionaries from project 1
+With all four dict: 49.3784% (4687/9492) 
+		MPQA:49.3257% (4682/9492)
+		WordNet: Accuracy = 49.4416% 
+		FMN:48.7463% 
+		binliu:Accuracy = 48.1037% (4566/9492) (classification)
+
+//Gaussian Naive Bayes
+Gaussian NB: Number of mislabeled points : 6744
+			Accuracy: 28.9506%
+			
+			
+//Confusion Matrix for our best result
+
+	Accuracy = 50.1475% (4760/9492) (classification)
+	{0: {0: 854, 1: 209, 2: 420, 3: 94, 4: 151}, 1: {0: 47, 1: 1236, 2: 121, 3: 80, 4: 103}, 2: {0: 412, 1: 535, 2: 1150, 3: 239, 4: 193}, 3: {0: 299, 1: 413, 2: 336, 3: 639, 4: 143}, 4: {0: 180, 1: 394, 2: 262, 3: 101, 4: 881}}

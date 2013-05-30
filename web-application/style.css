@@ -1,0 +1,877 @@
+
+
+/*******************************************************
+NLP TASKS
+URL: http://plcc.seas.upenn.edu:8080/nlp/
+AUTHOR: Tao Feng, Yayang Tian, Ani Nenkova, Annie Louis
+DATE: 30 Oct, 2012
+REVISION: 1.0
+DESCRIPTION: A web-based natural language
+             processing tool for semantic analysis
+*********************************************************
+
+
+/*-----------------------------------------------------------------------------------*/
+/*	  1. Reset CSS
+/*-----------------------------------------------------------------------------------*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body { padding-top: 19px; font-weight: normal; line-height: 23px; }
+a { cursor: pointer; text-decoration: none; }
+ol, ul { list-style: none; }
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after,
+q:before, q:after { content: ''; content: none; }
+:focus { outline: 0; }
+ins    { text-decoration: none; }
+del    { text-decoration: line-through; }
+table  { border-collapse: collapse; border-spacing: 0; }
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+.clear   { clear: both; }
+
+
+
+/*-----------------------------------------------------------------------------------*/
+/*	  2. General Settings
+/*-----------------------------------------------------------------------------------*/
+
+/*  1. GENERAL COLORS AND FONTS   */
+body {
+     font-family: 'Droid Sans', "Trebuchet Ms", verdana;
+     font-size: 17px; /* Default font size for the entire document */
+     color: #666; /* Default colors for the fonts */
+     background: #F8F8F8; /* Background color */
+}
+
+/* Links */
+h1, h2,  h3, h4, h5, h6, h1 a, h2 a,  h3 a, h4 a, h5 a, h6 a {
+     color: #333;
+     font-family: 'Fjord One', arial, verdana;
+     font-weight: normal;
+}
+
+/*--- 2. Headings ---*/
+h1 { font-size: 35px; margin-bottom: 24px; }
+h2 { font-size: 25px; margin-bottom: 20px;  text-shadow: 0 0 1px #000; /*text-shadow:0 -1px 1px rgba(0,0,0,0.25); */}
+h3 { font-size: 20px; margin-bottom: 16px; text-shadow: 0 0 0.5px #000;}
+h4 { font-size: 18px; margin-bottom: 14px; }
+h5 { font-size: 16px; margin-bottom: 12px; }
+h6 { font-size: 14px; margin-bottom: 10px; }
+
+/*  3. INTRO ( The text below the navigation )   */
+#intro {
+     font-family:'Fjord One', 'Times New Roman', serif;
+     color: #414141;
+}
+
+
+/* Scoll button */
+/*--- 4. SlideTo buttons ---*/
+a.scroll_down { display: block; width: 46px; height: 46px; margin: 0 auto; margin-bottom: 25px; background: url('images/sprite.png') -222px 0px no-repeat; }
+a.scroll_top { display: block; width: 46px; height: 46px; margin: 0 auto; margin-bottom: 50px; background: url('images/sprite.png') -268px 0px no-repeat; }
+
+/*-----------------------------------------------------------------------------------*/
+/*	3. Skeleton
+/*-----------------------------------------------------------------------------------*/
+
+/*--- 1. General container ---*/
+/*main pages*/
+#first_wrapper {
+	width: 960px; margin: 40px;  overflow-x: hidden; -ms-overflow-x: hidden; padding:30px;
+	border:1px solid #CCCCCC; margin-left:150px; background:#fcfcfc; -moz-border-radius:1px;
+	-webkit-box-shadow: 0px 1px 10px 10px #b7b7b7;
+  -moz-box-shadow: 0px 1px 2px 10px #b7b7b7;
+  box-shadow: 3px 4px 20px 2px #b7b7b7;
+	background-color: #eee;
+}
+#first_wrapper .intro{
+	font-size: 22px;
+	line-height: 28px;
+	margin-bottom: -30px;
+
+}
+
+/*thank you page*/
+#last_wrapper { width: 560px; height:280px;  padding: 50px;  overflow-x: hidden; -ms-overflow-x: hidden; padding:40px; border:2px solid #CCCCCC; margin-left:350px; margin-top: 80px; background:#fcfcfc; -moz-border-radius:1px; -webkit-box-shadow: 0px 1px 1px 1px #b7b7b7;
+	-moz-box-shadow: 0px 1px 2px 10px #b7b7b7;background-color: #eee;
+	box-shadow: 1px 1px 20px 1px #b7b7b7 }
+#last_wrapper .thanks a{float: right; color:#35bdf5;  font-size: 22px; text-decoration:underline; }
+#last_wrapper .actions{margin-right:-10px; float: right;}
+
+/*manager*/
+#wrapper { width: 960px; margin: 50px;  overflow-x: hidden; -ms-overflow-x: hidden; padding:40px; border:1px solid #CCCCCC; margin-left:150px; background:#fcfcfc; -moz-border-radius:1px; -webkit-box-shadow: 0px 1px 1px 1px #b7b7b7;
+	-moz-box-shadow: 0px 1px 2px 10px #b7b7b7;
+	box-shadow: 1px 1px 10px 1px #b7b7b7 }
+#wrapper .queryResult{
+overflow:scroll;
+  height: 300px;
+  color: #333;
+  margin: -10px 5px -20px 0;
+  background-color: #E7F3FF;
+  border: 1px solid #eee;
+  padding: 40px;
+  font-size: 18px;
+  -webkit-box-shadow: 0px 1px 10px 10px #b7b7b7;
+  -moz-box-shadow: 0px 1px 2px 10px #b7b7b7;
+  box-shadow: 3px 4px 20px 2px #b7b7b7;
+}
+#wrapper .thanks a{float: right; color:#35bdf5;  font-size: 22px; text-decoration:underline; }
+#wrapper .clears{margin-left:5px; float: right; }
+#wrapper td, th 		{font-size:1em;border:2px solid #35BDF5;padding:3px 7px 2px 7px;}
+#wrapper th 			{font-size:1.1em;text-align:center;padding-top:5px;padding-bottom:4px;background-color:#35bdf5;color:#ffffff;}
+#wrapper tr.alt td		{ background-color:#e9f4ff;}
+
+/*other features*/
+#man .actions{margin-right:-10px; float: right;}
+#features { margin-bottom: 100px; }
+#contact { margin-bottom: 100px; }
+
+/*--- 2. Grid system ---*/
+.left_half                        {float: left;   }
+.right_half		                   {float: right;}
+.full                             { width: 100%; }
+.one_half, .one_half_last         { width: 46%; margin-right: 8%; }
+.one_third, .one_third_last       { width: 30%; margin-right: 5%; }
+.two_third, .two_third_last       { width: 65%; margin-right: 5%; }
+.one_fourth, .one_fourth_last     { width: 22%; margin-right: 4%; }
+.two_fourth, .two_fourth_last     { width: 48%; margin-right: 4%; }
+.three_fourth, .three_fourth_last { width: 74%; margin-right: 4%; }
+.one_fifth, .one_fifth_last       { width: 16%; margin-right: 4%; }
+.two_fifth, .two_fifth_last       { width: 36%; margin-right: 4%; }
+.three_fifth, .three_fifth_last   { width: 56%; margin-right: 4%; }
+.four_fifth, .four_fifth_last     { width: 76%; margin-right: 4%; }
+
+.one_half, .one_third, .two_third, .one_fourth, .two_fourth, .three_fourth, .one_fifth, .two_fifth, .three_fifth,
+.four_fifth, .one_sixth, .two_sixth, .three_sixth, .four_sixth, .five_sixth,
+.one_half_last, .one_third_last, .two_third_last, .one_fourth_last,  .two_fourth_last, .three_fourth_last,
+.one_fifth_last, .two_fifth_last, .three_fifth_last, .four_fifth_last
+{ float: left; margin-bottom: 60px; }
+
+.full { margin-bottom: 60px; }
+
+.one_half_last, .one_third_last, .two_third_last, .one_fourth_last,  .two_fourth_last, .three_fourth_last,
+.one_fifth_last, .two_fifth_last, .three_fifth_last, .four_fifth_last
+{ margin-right: 0%; }
+
+
+
+
+
+
+
+
+
+
+/*-----------------------------------------------------------------------------------*/
+/*  LOGIN
+/*-----------------------------------------------------------------------------------*/
+
+@import url(http://fonts.googleapis.com/css?family=Bree+Serif);
+
+/*******************
+SELECTION STYLING
+*******************/
+
+::selection {
+	color: #fff;
+	background: #f676b2; /* Safari */
+}
+::-moz-selection {
+	color: #fff;
+	background: #f676b2; /* Firefox */
+}
+
+/*******************
+BODY STYLING
+*******************/
+
+#login {
+	/* Center wrapper perfectly */
+	width: 500px;
+	height: 100px;
+	margin: 70px auto;
+
+}
+
+
+
+
+.gradient {
+	/* Center Positioning */
+	width: 600px;
+	height: 600px;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	margin-left: -300px;
+	margin-top: -300px;
+	z-index: -2;
+
+	/* Fallback */
+	background-image: url(http://www.demo.amitjakhu.com/login-form/images/gradient.png);
+	background-repeat: no-repeat;
+
+	/* CSS3 Gradient */
+	background-image: -webkit-gradient(radial, 0% 0%, 0% 100%, from(rgba(213,246,255,1)), to(rgba(213,246,255,0)));
+	background-image: -webkit-radial-gradient(50% 50%, 40% 40%, rgba(213,246,255,1), rgba(213,246,255,0));
+	background-image: -moz-radial-gradient(50% 50%, 50% 50%, rgba(213,246,255,1), rgba(213,246,255,0));
+	background-image: -ms-radial-gradient(50% 50%, 50% 50%, rgba(213,246,255,1), rgba(213,246,255,0));
+	background-image: -o-radial-gradient(50% 50%, 50% 50%, rgba(213,246,255,1), rgba(213,246,255,0));
+}
+
+/*******************
+LOGIN FORM
+*******************/
+
+.login-form {
+	width: 300px;
+	margin: 0 auto;
+	position: relative;
+	height: 360px;
+	background: #f3f3f3;
+	border: 1px solid #fff;
+	border-radius: 5px;
+
+    -webkit-box-shadow: 0px 1px 10px 10px #b7b7b7;
+	-moz-box-shadow: 0px 1px 2px 10px #b7b7b7;
+	box-shadow: 3px 4px 20px 2px #b7b7b7
+}
+
+
+
+/*******************
+HEADER
+*******************/
+
+.login-form .header {
+	padding: 40px 30px 30px 30px;
+}
+
+.login-form .header h1 {
+
+	font-weight: 300;
+	line-height:34px;
+	color: #414848;
+	text-shadow: 1px 1px 0 rgba(256,256,256,1.0);
+	margin-bottom: 10px;
+}
+
+.login-form .header span {
+	line-height: 16px;
+	color: #678889;
+	text-shadow: 1px 1px 0 rgba(256,256,256,1.0);
+}
+
+
+#login .hint {
+	/* Center wrapper perfectly */
+	margin-left: 33px;
+	margin-top: 35px;
+    line-height: 16px;
+	color: #678889;
+	text-shadow: 1px 1px 0 rgba(256,256,256,1.0);
+
+}
+
+
+/*******************
+CONTENT
+*******************/
+
+.login-form .content {
+	padding: 0 30px 25px 30px;
+}
+
+/* Input field */
+.login-form .content .input {
+	width: 188px;
+	padding: 15px 25px;
+
+	font-weight: 400;
+	font-size: 14px;
+	color: #9d9e9e;
+	text-shadow: 1px 1px 0 rgba(256,256,256,1.0);
+
+	background: #fff;
+	border: 1px solid #fff;
+	border-radius: 5px;
+
+	box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
+	-moz-box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
+	-webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
+}
+
+/* Second input field */
+.login-form .content .password,
+.login-form .content .pass-icon {
+	height: 20px;
+	margin-top: 20px;
+}
+
+.login-form .content .input:hover {
+	background: #dfe9ec;
+	color: #414848;
+}
+
+.login-form .content .input:focus {
+	background: #dfe9ec;
+	color: #414848;
+
+	box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
+	-moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
+	-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
+}
+
+.user-icon, .pass-icon {
+	width: 46px;
+	height: 47px;
+	display: block;
+	position: absolute;
+	left: 0px;
+	padding-right: 2px;
+	z-index: -1;
+
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+}
+
+.user-icon {
+	top:153px; /* Positioning fix for slide-in, got lazy to think up of simpler method. */
+	background: rgba(65,72,72,0.75) url(http://www.demo.amitjakhu.com/login-form/images/user-icon.png) no-repeat center;
+}
+
+.pass-icon {
+	top:201px;
+	background: rgba(65,72,72,0.75) url(http://www.demo.amitjakhu.com/login-form/images/pass-icon.png) no-repeat center;
+}
+
+.content input:focus + div{
+	left: -46px;
+}
+
+/* Animation */
+.input, .user-icon, .pass-icon, .button, .register {
+	transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	-ms-transition: all 0.5s ease;
+}
+
+/*footer*/
+.login-form .footer{
+	margin-top: -15px;
+	margin-right: 25px;
+	float: right;
+}
+
+
+
+
+/*-----------------------------------------------------------------------------------*/
+/*  Task 1
+/*-----------------------------------------------------------------------------------*/
+
+
+/*welcome*/
+#welcomeWords1{
+	float:right;
+	margin-right:200px;
+	margin-top: -20px;
+}
+
+#welcomeId1{
+	float:right;
+	margin-right: -100px;
+		margin-top: -20px;
+	font-size: 27px;
+	font-style: italic;
+	color:orange;
+}
+
+/*remaining*/
+#remainingWords1
+{
+	float:right;
+	margin-right: -340px;
+		margin-top: -20px;
+}
+#remainingNo1{
+	float:right;
+	margin-right: -390px;
+		margin-top: -20px;
+	font-size: 27px;
+	font-style: italic;
+	color:orange;
+}
+
+
+
+/*remaining*/
+#remainingWords1
+{
+	float:right;
+	margin-right: -340px;
+		margin-top: -20px;
+}
+#remainingNo1{
+	float:right;
+	margin-right: -390px;
+		margin-top: -20px;
+	font-size: 27px;
+	font-style: italic;
+	color:orange;
+}
+
+
+
+#instruction{
+
+	float:right;
+	margin-right: -30px;
+	margin-top: 30px;
+	font-size: 20px;
+	font-style: italic;
+	color:orange;
+
+}
+
+#questionText{
+	height: 20px;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/*  Task 2
+/*-----------------------------------------------------------------------------------*/
+
+/*Task2 Hints*/
+#welcomeWords2{
+	float:right;
+	margin-right:255px;
+	margin-top: -45px;
+}
+
+#welcomeId2{
+	float:right;
+	margin-right: 200px;
+		margin-top: -45px;
+	font-size: 27px;
+	font-style: italic;
+	color:orange;
+}
+
+/*remaining*/
+#remainingWords2
+{
+	float:right;
+	margin-right: -20px;
+		margin-top: -45px;
+}
+#remainingNo2{
+	float:right;
+	margin-right: -60px;
+		margin-top: -45px;
+	font-size: 27px;
+	font-style: italic;
+	color:orange;
+}
+
+#logout_ref a{
+
+	float:right;
+	margin-right: -50px;
+	margin-top: -100px;
+	font-size: 20px;
+	font-style: italic;
+
+
+}
+
+
+#logout_ref{
+
+	float:right;
+	margin-right: 60px;
+	margin-top: 30px;
+	font-size: 20px;
+	font-style: italic;
+	color:orange;
+
+}
+
+
+/*Task1 or 3*/
+
+#logout_ref1 a{
+
+	float:right;
+	margin-right: -50px;
+	margin-top: -80px;
+	font-size: 20px;
+	font-style: italic;
+
+}
+
+
+#logout_ref1{
+
+	float:right;
+	margin-right: 60px;
+	margin-top: 30px;
+	font-size: 20px;
+	font-style: italic;
+	color:orange;
+
+}
+
+
+
+/*-----------------------------------------------------------------------------------*/
+/*  			Login
+/*-----------------------------------------------------------------------------------*/
+
+/* 1. Logo */
+	#logo 						{ max-width: 220px; margin: 0px auto; margin-bottom: 42px; text-align: center; }
+	#logo img 					{ max-width: 220px; }
+
+
+/* 2. Intro text */
+
+	#general 					{ margin-bottom: 100px; }
+	.general_image 				{ width: 100%; margin-top: -5px; margin-bottom: 45px; text-align: center; }
+	.general_image img 			{ width: 260px; height: 260px; border-radius: 130px; -moz-border-radius: 130px; -webkit-border-radius: 130px; behavior: url(PIE.htc); }
+	#general h3 				{ margin-bottom: 19px; font-size: 27px; line-height: 38px; text-align: left; }
+	#general p			     	 { line-height: 30px; text-align: center; }
+
+/* 3. radios */
+	#radios						{font-family:	   "Trebuchet MS", Arial, Helvetica, sans-serif; margin-left:20px;
+								width:95%; border-collapse:    collapse;
+								-webkit-box-shadow: 0px 1px 1px 0px #b7b7b7;
+								-moz-box-shadow: 0px 1px 1px 0px #b7b7b7;
+								box-shadow: 0px 1px 1px 0px #b7b7b7; }
+	#radios td, #radios th 		{font-size:1em;border:1px solid #35BDF5;padding:3px 7px 2px 7px;}
+	#radios th 					{font-size:1.1em;text-align:center;padding-top:5px;padding-bottom:4px;background-color:#35bdf5;color:#ffffff;}
+	#radios tr.alt td		    { background-color:#35BDF5;}
+
+/* Buttons */
+
+	.button, .button:visited 	{background:#000000 url(../images/alert-overlay.png) repeat-x; display:inline-block; padding:5px 10px 6px; color:#fff; text-decoration:none; -moz-border-radius:5px; -webkit-border-radius:5px; -moz-box-shadow:0 1px 3px rgba(0,0,0,0.5); -webkit-box-shadow:0 1px 3px rgba(0,0,0,0.5); text-shadow:0 -1px 1px rgba(0,0,0,0.25); border-bottom:1px solid rgba(0,0,0,0.25); position:relative; cursor:pointer; font-size:25px; font-weight:bold; line-height:1; border:0;}
+ 	.button:hover				{background-color:#111; color:#fff; text-decoration:none;}
+	.button:active				{top:1px;}
+
+
+#sidebar_container
+{ float: right;
+  width: 250px;
+  margin: 25px 0;}
+
+.leads_container
+{
+
+  color: #333;
+  margin: -10px 5px 27px 0;
+  background-color: #FDF5E6;
+  border: 1px solid #eee;
+  padding: 40px;
+  font-size: 18px;
+  -webkit-box-shadow: 0px 1px 10px 10px #b7b7b7;
+	-moz-box-shadow: 0px 1px 2px 10px #b7b7b7;
+	box-shadow: 3px 4px 20px 2px #b7b7b7;
+
+}
+
+.leads_container p, .content h1
+{
+	font-size: 18px;
+	/*color: #c00808;*/
+	padding: 4px;
+	text-align:justify;
+}
+
+}
+
+.leads_container h1
+{ padding: 5px 0 0 0}
+
+.paperclip
+{ float: left;
+  position: relative;
+  margin-left:-525px;
+  margin-top: -14px;
+}
+
+.submit
+{ color: #35BDF5;
+  border: 1px solid #ddd;
+  padding: 5px 10px;
+  background: #fff;
+  float: right;
+  cursor: pointer;
+  margin: 0 110 10px 0;
+  font: normal 140% 'Yanone Kaffeesatz', sans-serif;
+  -webkit-box-shadow: 0px 1px 1px 0px #b7b7b7;
+	-moz-box-shadow: 0px 1px 1px 0px #b7b7b7;
+	box-shadow: 0px 1px 1px 0px #b7b7b7;
+
+  }
+
+ul.menu {
+     border-top: 1px solid #CCC; /* The color of the line above the menu items */
+     border-bottom: 1px solid #CCC; /* The color of the line below the menu items */
+}
+
+
+
+
+
+/*-----------------------------------------------------------------------------------*/
+/*	Task2 Compare
+/*-----------------------------------------------------------------------------------*/
+
+/* 3. radios */
+/*A class of radios*/
+	.radios2						{font-family:	   "Trebuchet MS", Arial, Helvetica, sans-serif; margin-left:20px;
+								width:98%; border-collapse:    collapse;
+								-webkit-box-shadow: 0px 1px 1px 0px #b7b7b7;
+								-moz-box-shadow: 0px 1px 1px 0px #b7b7b7;
+								box-shadow: 0px 1px 1px 0px #b7b7b7; }
+	.radios2 td, .radios th 		{font-size:1em;border:1px solid #35BDF5;padding:3px 7px 2px 7px;}
+	.radios2 th 					{font-size:1.1em;text-align:center;padding-top:5px;padding-bottom:4px;background-color:#35bdf5;color:#ffffff;}
+	.radios2 tr.alt td		    { background-color:#e9f4ff;}
+
+
+/* 3. tags */
+	#tags						{font-family:	   "Trebuchet MS", Arial, Helvetica, sans-serif;
+								width:80%;
+								-webkit-box-shadow: 0px 1px 1px 0px #b7b7b7;
+								-moz-box-shadow: 0px 1px 1px 0px #b7b7b7;
+								box-shadow: 0px 1px 1px 0px #b7b7b7; margin-left: 100px;}
+	#tags td, #radios th 		{font-size:1em;padding:3px 7px 2px 7px;text-align: center;}
+	#tags th 					{font-size:1.1em;text-align:center;padding-top:5px;padding-bottom:4px;background-color:#35bdf5;color:#ffffff;text-align: center;}
+	#tags tr.alt td		    { background-color:#e9f4ff;text-align: center;}
+
+
+
+#right_container {
+	/*width:  1100px;*/
+	float:right;
+	margin-top: -40px;
+	overflow:auto;
+	width: 45.9%;
+	padding: 20px;
+	margin-left: 3px;
+	height: 570px;
+	background: none;
+	background-color: #FDF5E6;
+	-webkit-box-shadow: 0px 1px 10px 10px #b7b7b7;
+	-moz-box-shadow: 0px 1px 2px 10px #b7b7b7;
+	box-shadow: 3px 4px 20px 2px #b7b7b7;
+	display: block;
+	overflow: hidden;
+	/*font-family:	   "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+	font-family: 'Droid Sans', "Trebuchet Ms", verdana;
+	color: black;
+}
+
+#right_container h4 {
+	font-family: 'Droid Sans', "Trebuchet Ms", verdana;
+	font-size: 25px;
+	line-height: 37px;
+	/*color: #c00808;*/
+	padding: 5px;
+	text-align:justify;
+}
+
+
+#left_container{
+
+	/*width:  1100px;*/
+
+	 overflow-y: scroll;
+     overflow: -moz-scrollbars-vertical;
+     overflow: scroll;
+	float: left;
+	width: 45.9%;
+	padding: 20px;
+	margin-left: 0px;
+	margin-right: 5px;
+	margin-top: -10px;
+	height: 570px;
+	background: none;
+	background-color: #FDF5E6;
+	-webkit-box-shadow: 0px 1px 10px 10px #b7b7b7;
+	-moz-box-shadow: 0px 1px 20px 10px #b7b7b7;
+	box-shadow: 3px 4px 10px 2px #b7b7b7;
+	display: block;
+	overflow: hidden;
+	/*font-family:	   "Trebuchet MS", Arial, Helvetica, sans-serif;*/
+	font-family: 'Droid Sans', "Trebuchet Ms", verdana;
+	color: black;
+}
+
+#left_container h4 {
+    font-family: 'Droid Sans', "Trebuchet Ms", verdana;
+	font-size: 20px;
+	line-height: 28px;
+	color: #708090;
+	padding-left: 5px;
+		text-align:justify;
+}
+
+input#undo.submit
+{
+  float: left;
+
+ font-size: 22px;
+}
+
+
+.articles_container
+{
+
+  margin: -45px 2px 10px 0;
+  height: 610px;
+  background: #FBFBFB;
+  border: 1px solid #eee;
+  padding: 10px;
+}
+
+.articles_container h3, .content h1
+{
+  padding: 10px 15px;
+  margin: 0 1px;}
+
+.articles_container h1
+{ padding: 5px 0 0 0;}
+
+
+
+.textarea
+{
+font-family:	   "Trebuchet MS", Arial, Helvetica, sans-serif;
+	float: left;
+	font-size: 17px;
+	color: #708090;
+}
+
+
+
+/*-----------------------------------------------------------------------------------*/
+/*	Dialog
+/*-------------------------------------*/
+#dialog-overlay {
+
+	/* set it to fill the whil screen */
+	width:100%;
+	height:100%;
+
+	/* transparency for different browsers */
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
+	background:#000;
+
+	/* make sure it appear behind the dialog box but above everything else */
+	position:absolute;
+	top:0; left:0;
+	z-index:3000;
+
+	/* hide it by default */
+	display:none;
+}
+
+
+#dialog-box {
+
+	/* css3 drop shadow */
+	-webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+
+	/* css3 border radius */
+	-moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+	top:0;
+    postion: fixed;
+	background:#eee;
+	/* styling of the dialog box, i have a fixed dimension for this demo */
+	width:1100px;
+
+	/* make sure it has the highest z-index */
+	position:absolute;
+	z-index:5000;
+
+	/* hide it by default */
+	display:none;
+}
+
+#dialog-box .dialog-content {
+	/* style the content */
+
+	font-size: 20px;
+	line-height: 25px;
+	text-align:left;
+	padding:50px;
+	margin:3px;
+	color: #333;
+    font-family: 'Fjord One', arial, verdana;
+    font-weight: normal;
+}
+
+a.button {
+	/* styles for button */
+	margin:10px auto 0 auto;
+	text-align:center;
+	background-color: #e33100;
+	display: block;
+	width:70px;
+	padding: 5px 10px 6px;
+
+	text-decoration: none;
+	font-weight: bold;
+	line-height: 1;
+
+	/* css3 implementation :) */
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	border-bottom: 1px solid rgba(0,0,0,0.25);
+	position: relative;
+	cursor: pointer;
+
+}
+
+a.button:hover {
+	background-color: #c33100;
+}
+
+/* extra styling */
+#dialog-box .dialog-content p {
+	font-weight:700; margin:0;
+}
+
+#dialog-box .dialog-content ul {
+	margin:10px 0 10px 20px;
+	padding:0;
+	height:50px;
+}
+
