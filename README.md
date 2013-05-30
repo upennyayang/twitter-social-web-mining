@@ -1,7 +1,8 @@
 Twitter Social Web Mining
 =========================
 
-An innovative six-class classification model and web application that is able to predict sentiments of tweets around you.
+An innovative six-class classification model and web application that is able to predict sentiments of real-time tweets
+around you based on keyword searched.
 `Spring 2013`
 
 ## _About_
